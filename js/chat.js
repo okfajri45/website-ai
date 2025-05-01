@@ -160,13 +160,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const apiUrl = `https://api.kuromi.my.id/ai/deepseek?prompt=${encodeURIComponent(message)}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
-        
+
         removeTypingIndicator(typingIndicator);
-        
+
         if (data.success && data.result) {
             addMessage(data.result, 'ai');
-        } else {
-            addMessage("Maaf, terjadi kesalahan dalam pemrosesan.", 'ai');
         }
     } catch (error) {
         removeTypingIndicator(typingIndicator);
