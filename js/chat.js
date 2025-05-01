@@ -165,6 +165,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (data.success && data.result) {
             addMessage(data.result, 'ai');
+        } else {
+            addMessage("Maaf, terjadi kesalahan dalam pemrosesan.", 'ai');
         }
     } catch (error) {
         removeTypingIndicator(typingIndicator);
