@@ -155,26 +155,25 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollToBottom();
         return typingDiv;
     }
-
     async function fetchAIResponse(message, typingIndicator) {
-        try {
-            const apiUrl = `https://api.siputzx.my.id/api/ai/claude-sonnet-35?content=${encodeURIComponent(message)}`;
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-            
-            removeTypingIndicator(typingIndicator);
-            
-            if (data.status && data.data) {
-                addMessage(data.data, 'ai');
-            } else {
-                addMessage("Maaf, terjadi kesalahan dalam pemrosesan.", 'ai');
-            }
-        } catch (error) {
-            removeTypingIndicator(typingIndicator);
-            addMessage("Error: Gagal terhubung ke server AI", 'ai');
-            console.error('API Error:', error);
+    try {
+        const apiUrl = `https://api.kuromi.my.id/ai/deepseek?prompt=${encodeURIComponent(message)}`;
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        
+        removeTypingIndicator(typingIndicator);
+        
+        if (data.success && data.result) {
+            addMessage(data.result, 'ai');
+        } else {
+            addMessage("Maaf, terjadi kesalahan dalam pemrosesan.", 'ai');
         }
+    } catch (error) {
+        removeTypingIndicator(typingIndicator);
+        addMessage("Error: Gagal terhubung ke server AI", 'ai');
+        console.error('API Error:', error);
     }
+}
 
     // Helper Functions
     function applyCodeHighlighting() {
